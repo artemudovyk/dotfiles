@@ -560,6 +560,11 @@
       init.defaultBranch = "main";
       pull.rebase = true;
     };
+
+    ignores = [
+      ".direnv"
+      ".envrc.local"
+    ];
   };
 
   sops = {
@@ -696,5 +701,10 @@
     Install = {
       WantedBy = [ "graphical-session.target" ];
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 }
