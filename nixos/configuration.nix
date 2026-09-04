@@ -80,6 +80,7 @@
       "wheel"
       "plex"
       "docker"
+      "corectrl"
     ];
     shell = pkgs.fish;
   };
@@ -129,13 +130,13 @@
     options = "--delete-older-than 14d";
   };
 
-  # 1. Enable OpenGL / Hardware Acceleration (Mesa + Vulkan)
+  # Enable OpenGL / Hardware Acceleration (Mesa + Vulkan)
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # Required for 32-bit Steam games and Wine dependencies
   };
 
-  # 2. Enable Steam & GameMode
+  # Enable Steam & GameMode
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports for Steam Remote Play
@@ -144,6 +145,15 @@
       proton-ge-bin # Custom Proton build with extra game fixes & codecs
     ];
   };
+
+  # Enable CoreCtrl service and polkit rules
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.enable = true;
+  };
+
+  # Unlock AMD OverDrive features in kernel (0xffffffff enables all controls)
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

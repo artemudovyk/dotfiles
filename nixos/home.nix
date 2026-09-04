@@ -36,6 +36,8 @@
     telegram-desktop
     thunderbird
 
+    ripgrep
+
     gcc
     gnumake
     unzip
@@ -46,10 +48,16 @@
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 
+  home.sessionVariables = {
+    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+    XCURSOR_SIZE = "24";
+  };
+
   # Neovim
   # Out-of-store symlink for Neovim
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/nvim";
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -654,18 +662,45 @@
     };
   };
 
-  # Lazygit configuration
   programs.lazygit = {
     enable = true;
   };
 
-  # Lazydocker configuration
   programs.lazydocker = {
     enable = true;
     settings = {
       gui = {
         showBottomLine = true;
       };
+    };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+  };
+
+  # Ensures XCursor settings are written to ~/.Xresources / ~/.icons
+  xresources.properties = {
+    "Xcursor.size" = 24;
+    "Xcursor.theme" = "Adwaita";
+  };
+
+  # Ensure corectrl runs on session login
+  systemd.user.services.corectrl = {
+    Unit = {
+      Description = "CoreCtrl System Tray Application";
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.corectrl}/bin/corectrl --minimize-systray";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 }
