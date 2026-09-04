@@ -403,14 +403,6 @@
       "services/org.kde.krunner.desktop"."_launch" = "Meta+R";
       "krunner.desktop"."_launch" = "Meta+R"; # Disable default Meta+Space for KRunner
 
-      # Polonium Tiling Shortcuts
-      "kwin"."Polonium.Retile" = "Meta+\\";
-      "kwin"."Polonium.FocusLeft" = "Meta+H";
-      "kwin"."Polonium.FocusDown" = "Meta+J";
-      "kwin"."Polonium.FocusUp" = "Meta+K";
-      "kwin"."Polonium.FocusRight" = "Meta+L";
-      "kwin"."Polonium.OpenSettings" = "Meta+Shift+K";
-
       # Move Window to Desktop (Use shifted symbols instead of Shift+Number)
       "kwin"."Window to Desktop 1" = "Meta+!";
       "kwin"."Window to Desktop 2" = "Meta+@";
@@ -422,6 +414,8 @@
       "kwin"."Window to Desktop 8" = "Meta+*";
       "kwin"."Window to Desktop 9" = "Meta+(";
       "kwin"."Window to Desktop 0" = "Meta+)";
+
+      "kwin"."Window Fullscreen" = "Meta+F";
 
       # Clear Spectacle's Meta+R recording binding
       "org.kde.spectacle.desktop"."RecordRegion" = "none";
