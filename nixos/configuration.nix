@@ -101,7 +101,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-    input-remapper
+    keyd
   ];
 
   # Plex
@@ -109,8 +109,6 @@
     enable = true;
     openFirewall = true;
   };
-
-  services.input-remapper.enable = true;
 
   virtualisation.docker = {
     enable = true;
@@ -155,6 +153,22 @@
   # Unlock AMD OverDrive features in kernel (0xffffffff enables all controls)
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      mm720 = {
+        ids = [
+          "2516:0141"
+          "0406:2814"
+        ];
+        settings = {
+          main = {
+            homepage = "enter";
+          };
+        };
+      };
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -181,5 +195,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
-
 }
