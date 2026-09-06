@@ -25,6 +25,10 @@
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    import-tree.url = "github:denful/import-tree";
+
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
@@ -33,25 +37,24 @@
       nixpkgs,
       home-manager,
       plasma-manager,
-      zen-browser,
       sops-nix,
       ...
     }@inputs:
     {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
             ./hardware-configuration.nix
-
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  zen-browser = zen-browser.packages.${prev.system}.default;
-                })
-              ];
-            })
+            ./modules/gaming.nix
+            ./modules/zen-browser.nix
+            ./modules/terminal
+            ./modules/git.nix
+            ./modules/kde-plasma.nix
+            # ./modules/niri.nix
+            # ./modules/waybar.nix
 
             home-manager.nixosModules.home-manager
             {
@@ -64,6 +67,7 @@
               ];
               home-manager.users.artud = import ./home.nix;
             }
+
           ];
         };
       };

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -127,31 +127,6 @@
     dates = "weekly";
     options = "--delete-older-than 14d";
   };
-
-  # Enable OpenGL / Hardware Acceleration (Mesa + Vulkan)
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true; # Required for 32-bit Steam games and Wine dependencies
-  };
-
-  # Enable Steam & GameMode
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports for Steam Remote Play
-    dedicatedServer.openFirewall = true;
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin # Custom Proton build with extra game fixes & codecs
-    ];
-  };
-
-  # Enable CoreCtrl service and polkit rules
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.enable = true;
-  };
-
-  # Unlock AMD OverDrive features in kernel (0xffffffff enables all controls)
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
