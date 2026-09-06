@@ -43,6 +43,8 @@
     unzip
     gnutar
     curl
+
+    xdg-utils
   ];
 
   # Let Home Manager install and manage itself
@@ -543,7 +545,6 @@
         contents = {
           user.name = "Artem Udovyk";
           user.email = "artem@udovyk.com";
-          # core.sshCommand = "ssh -i ~/.ssh/id_udovyk -o IdentitiesOnly=yes";
         };
       }
       {
@@ -551,7 +552,6 @@
         contents = {
           user.name = "Artem Udovyk";
           user.email = "udovyk.a@konstankino.com";
-          # core.sshCommand = "ssh -i ~/.ssh/id_konstankino -o IdentitiesOnly=yes";
         };
       }
     ];
@@ -707,4 +707,13 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  # xdg.desktopEntries.lunatask = {
+  #   name = "Lunatask";
+  #   # Ensures PATH has xdg-utils and disables stale single-instance socket checks
+  #   exec = "env PATH=${pkgs.xdg-utils}/bin:$PATH lunatask --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
+  #   icon = "lunatask";
+  #   terminal = false;
+  #   categories = [ "Utility" ];
+  # };
 }
