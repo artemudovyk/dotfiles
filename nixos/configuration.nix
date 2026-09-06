@@ -153,6 +153,10 @@
   # Unlock AMD OverDrive features in kernel (0xffffffff enables all controls)
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   services.keyd = {
     enable = true;
     keyboards = {

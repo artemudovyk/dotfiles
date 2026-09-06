@@ -460,6 +460,11 @@
       confirm_os_window_close = 0;
     };
 
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      # size = 11;
+    };
+
     # Custom keybindings
     keybindings = {
       "ctrl+shift+1" = "goto_tab 1";
