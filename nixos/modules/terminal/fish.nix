@@ -15,6 +15,7 @@
           lg = "lazygit";
           ld = "lazydocker";
           v = "nvim";
+          nd = "nix develop --command $SHELL";
           nrs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos/.#desktop";
           nrt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos/.#desktop";
           nrb = "sudo nixos-rebuild build --flake ~/dotfiles/nixos/.#desktop";

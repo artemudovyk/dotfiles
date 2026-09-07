@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.username = "artud";
@@ -25,4 +25,10 @@
   };
 
   xdg.mimeApps.enable = true;
+
+  xdg.configFile = {
+    "niri".source = ../config/niri;
+    "noctalia/config.toml".source = lib.mkForce ../config/noctalia/config.toml;
+  };
+
 }

@@ -28,7 +28,35 @@
 
     import-tree.url = "github:denful/import-tree";
 
-    niri.url = "github:sodiboo/niri-flake";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    elephant = {
+      url = "github:abenz1267/elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -53,9 +81,9 @@
             ./modules/terminal
             ./modules/sops.nix
             ./modules/git.nix
-            ./modules/kde-plasma.nix
-            # ./modules/niri.nix
-            # ./modules/waybar.nix
+            # ./modules/kde-plasma.nix
+            ./modules/nix.nix
+            ./modules/niri.nix
 
             home-manager.nixosModules.home-manager
             {

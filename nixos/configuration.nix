@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -39,6 +39,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  services.displayManager.defaultSession = lib.mkForce "plasma";
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -74,6 +75,9 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."artud" = {
     isNormalUser = true;
+    # TODO: add hashedPassword through sops
+    # nix shell nixpkgs#mkpasswd
+    # mkpasswd -m sha-512
     description = "Artem Udovyk";
     extraGroups = [
       "networkmanager"
