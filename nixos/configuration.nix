@@ -128,6 +128,32 @@
     options = "--delete-older-than 14d";
   };
 
+  # Disable basic time-only GC
+  # nix.gc.automatic = false;
+  #
+  # # Custom GC service that keeps the last 10 generations AND deletes older than 14 days
+  # systemd.services.nix-gc-smart = {
+  #   description = "Smart Nix Garbage Collection";
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = pkgs.writeShellScript "nix-gc-smart" ''
+  #       # 1. Delete generations older than 14d, BUT strictly keep at least the last 10
+  #       ${pkgs.nix}/bin/nix-env --delete-generations +10 -p /nix/var/nix/profiles/system
+  #
+  #       # 2. Collect garbage unreachable by remaining generations/symlinks
+  #       ${pkgs.nix}/bin/nix-collect-garbage
+  #     '';
+  #   };
+  # };
+  #
+  # systemd.timers.nix-gc-smart = {
+  #   wantedBy = [ "timers.target" ];
+  #   timerConfig = {
+  #     OnCalendar = "weekly";
+  #     Persistent = true;
+  #   };
+  # };
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];

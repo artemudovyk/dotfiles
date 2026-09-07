@@ -338,6 +338,7 @@
       # Exec=sh -c "qdbus org.kde.KWin /KWin org.kde.KWin.setCurrentDesktop 1 && kitty"
 
       home.pointerCursor = {
+        enable = true;
         gtk.enable = true;
         x11.enable = true;
         name = "Adwaita";

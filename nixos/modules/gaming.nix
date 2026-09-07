@@ -13,18 +13,15 @@
     remotePlay.openFirewall = true; # Open ports for Steam Remote Play
     dedicatedServer.openFirewall = true;
     extraCompatPackages = with pkgs; [
-      proton-ge-bin # Custom Proton build with extra game fixes & codecs
+      proton-ge-bin
     ];
   };
 
   # Unlock AMD OverDrive features in kernel (0xffffffff enables all controls)
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
-  # Enable CoreCtrl service and polkit rules
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.enable = true;
-  };
+  programs.corectrl.enable = true;
+  hardware.amdgpu.overdrive.enable = true;
 
   home-manager.sharedModules = [
     {
@@ -46,6 +43,33 @@
         STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
       };
 
+      programs.mangohud = {
+        enable = true;
+        enableSessionWide = true;
+
+        settings = {
+          no_display = true;
+          toggle_hud = "Shift_R+F1";
+
+          # Visual layout & metrics
+          legacy_layout = false;
+          gpu_stats = true;
+          gpu_temp = true;
+          cpu_stats = true;
+          cpu_temp = true;
+          ram = true;
+          vram = true;
+          fps = true;
+          frametime = true;
+          frame_timing = 1;
+
+          # Styling
+          font_size = 18;
+          background_alpha = "0.5";
+          round_corners = 4;
+        };
+      };
+      # -- HM
     }
   ];
 
