@@ -2,7 +2,7 @@
 
 {
   home-manager.sharedModules = [
-    {
+    ({ config, ... }: {
       programs.opencode = {
         enable = true;
         settings = {
@@ -47,8 +47,33 @@
               '';
             };
           };
+          provider = {
+            opencode = {
+              options = {
+                apiKey = "{file:${config.sops.secrets."opencode/opencode-api-key".path}}";
+              };
+            };
+            openrouter = {
+              options = {
+                apiKey = "{file:${config.sops.secrets."opencode/openrouter-api-key".path}}";
+              };
+            };
+          };
         };
       };
-    }
+
+      sops = {
+        secrets = {
+          "opencode/opencode-api-key" = {
+            sopsFile = ../../secrets/api-keys.yaml;
+          };
+          "opencode/openrouter-api-key" = {
+            sopsFile = ../../secrets/api-keys.yaml;
+          };
+        };
+      };
+
+      # -- HM
+    })
   ];
 }

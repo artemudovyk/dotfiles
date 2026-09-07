@@ -100,25 +100,25 @@
       };
 
       sops = {
-        age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-        defaultSopsFile = ../secrets/ssh-keys.yaml;
-
         secrets = {
           id_udovyk = {
+            sopsFile = ../secrets/ssh-keys.yaml;
             path = "${config.home.homeDirectory}/.ssh/id_udovyk";
             mode = "0600";
           };
           id_konstankino = {
+            sopsFile = ../secrets/ssh-keys.yaml;
             path = "${config.home.homeDirectory}/.ssh/id_konstankino";
             mode = "0600";
           };
           id_konstankino_tmp_bitbucket = {
+            sopsFile = ../secrets/ssh-keys.yaml;
             path = "${config.home.homeDirectory}/.ssh/id_konstankino_tmp_bitbucket ";
             mode = "0600";
           };
         };
       };
-
+      # -- HM
     })
   ];
 }

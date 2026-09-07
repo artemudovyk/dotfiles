@@ -51,6 +51,7 @@
             ./modules/gaming.nix
             ./modules/zen-browser.nix
             ./modules/terminal
+            ./modules/sops.nix
             ./modules/git.nix
             ./modules/kde-plasma.nix
             # ./modules/niri.nix
