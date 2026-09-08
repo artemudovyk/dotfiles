@@ -94,6 +94,8 @@ in
         wl-clipboard
         gpu-screen-recorder # CLI / Backend
         gpu-screen-recorder-gtk # GTK Tray / GUI (Spectacle-like recorder window)
+        xwayland-satellite
+        xwayland
       ];
 
       programs.noctalia = {
