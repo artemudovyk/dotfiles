@@ -95,6 +95,28 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule { 
+  match app-id="steam" title=r#"\^notificationtoasts\_\\d+\_desktop$"# 
+  default-floating-position x=0 y=0 relative-to="bottom-right"
+  open-focused false 
+}
+
+// window-rule {
+//     match app-id=r#"^steam$"# title=r#"^$"#
+//     match app-id=r#"^steam$"# title=r#"^Steam$"#
+//
+//     open-floating true
+// }
+
+window-rule {
+    // Matches games running via Steam / XWayland
+    match app-id=r#"^steam_app_"#
+
+    // Block CSD padding and force native geometry
+    draw-border-with-background false
+    geometry-corner-radius 0.0
+}
+
 // ----------------------------------------------------------------------------
 // Key binds
 // ----------------------------------------------------------------------------
@@ -160,6 +182,7 @@ binds {
 
     // Launcher
     Mod+Space  hotkey-overlay-title="Launcher" { spawn "walker"; }
+    Mod+Shift+Space  hotkey-overlay-title="Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+W      repeat=false hotkey-overlay-title="Launcher (windows)" { spawn "walker" "--provider" "windows"; }
     Mod+V      repeat=false hotkey-overlay-title="Launcher (clipboard)" { spawn "walker" "--provider" "clipboard"; }
 
@@ -198,6 +221,8 @@ binds {
     Mod+J     hotkey-overlay-title="Focus column down" { focus-window-down; }
     Mod+K     hotkey-overlay-title="Focus column up" { focus-window-up; }
     Mod+L     hotkey-overlay-title="Focus column down" { focus-column-right; }
+    Mod+WheelScrollUp hotkey-overlay-title="Focus column down" { focus-window-left; }
+    Mod+WheelScrollDown hotkey-overlay-title="Focus column down" { focus-column-right; }
 
     Mod+Ctrl+H     hotkey-overlay-title="Move column left" { move-column-left; }
     Mod+Ctrl+J     hotkey-overlay-title="Move column down" { move-window-down; }

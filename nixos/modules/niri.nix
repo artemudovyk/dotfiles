@@ -57,18 +57,9 @@ let
   };
 in
 {
-
-  imports = [
-    inputs.noctalia-greeter.nixosModules.default
-  ];
-
   programs.niri = {
     enable = true;
   };
-
-  # programs.noctalia-greeter = {
-  #   enable = true;
-  # };
 
   services.displayManager.sddm = {
     enable = true;
