@@ -28,11 +28,6 @@
 
     import-tree.url = "github:denful/import-tree";
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,10 +38,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # noctalia-greeter = {
+    #   url = "github:noctalia-dev/noctalia-greeter";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     elephant = {
       url = "github:abenz1267/elephant";
@@ -57,6 +52,8 @@
       url = "github:abenz1267/walker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -86,6 +83,7 @@
             ./modules/niri.nix
             ./modules/obs.nix
             ./modules/pipewire.nix
+            ./modules/catppuccin.nix
 
             home-manager.nixosModules.home-manager
             {
