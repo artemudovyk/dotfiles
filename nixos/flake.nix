@@ -81,9 +81,11 @@
             ./modules/terminal
             ./modules/sops.nix
             ./modules/git.nix
-            # ./modules/kde-plasma.nix
+            ./modules/kde-plasma.nix
             ./modules/nix.nix
             ./modules/niri.nix
+            ./modules/obs.nix
+            ./modules/pipewire.nix
 
             home-manager.nixosModules.home-manager
             {

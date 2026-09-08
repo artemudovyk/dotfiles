@@ -1,23 +1,18 @@
 [accessibility]
-ui_scale = 1.1
+ui_scale = 1.0
 
 [backdrop]
 enabled = true
 
 [bar.default]
 background_opacity = 0.34999999217689037
-center = ["clock"]
-end = [
-    "tray",
-    "network",
-    "bluetooth",
-    "volume",
-    "battery",
-    "session",
-]
+center = [ "active_window" ]
+end = [ "tray", "network", "bluetooth", "volume", "battery", "keyboard_layout", "clock", "session" ]
 margin_ends = 0
-scale = 1.1
-start = ["workspaces", "nix-monitor", "ram"]
+scale = 1.0
+thickness = 20
+font_scale = 0.90
+start = [ "workspaces", "cpu", "ram" ]
 
 [control_center]
 hidden_tabs = ["weather"]
@@ -82,12 +77,13 @@ show_weather = true
 
 [notification]
 background_opacity = 1.0
+scale = 0.75
 
 [osd]
 background_opacity = 1.0
 
 [plugins]
-enabled = ["avivbintangaringga/nix-monitor", "noctalia/wallhaven"]
+enabled = []
 
 [shell]
 font_family = "Comic Shanns Mono Nerd Font"
@@ -109,7 +105,6 @@ mode = "dark"
 source = "custom"
 
 [wallpaper]
-directory = "/home/parven/pi-nix/wallpapers"
 enabled = true
 
 [widget.battery]
@@ -140,4 +135,18 @@ show_label = false
 type = "tadomika_ari/w-engine:w-engine-widget"
 
 [widget.workspaces]
+hide_when_empty = true
+labels_only_when_occupied = true
 style = "minimal"
+
+[osd.kinds]
+bluetooth = false
+caffeine = false
+dnd = false
+keyboard_backlight = false
+keyboard_layout = false
+lock_keys = false
+media = false
+nightlight = false
+power_profile = false
+wifi = false

@@ -64,11 +64,16 @@ in
 
   programs.niri = {
     enable = true;
-    useNautilus = true;
   };
 
-  programs.noctalia-greeter = {
+  # programs.noctalia-greeter = {
+  #   enable = true;
+  # };
+
+  services.displayManager.sddm = {
     enable = true;
+    wayland.enable = true; # Ensures SDDM runs natively under Wayland
+    theme = "breeze"; # Optional: use breeze or custom theme
   };
 
   home-manager.sharedModules = [
@@ -76,6 +81,19 @@ in
       imports = [
         inputs.noctalia.homeModules.default
         inputs.walker.homeManagerModules.default
+      ];
+
+      home.packages = with pkgs; [
+        toggleDisplay
+        playerctl
+        brightnessctl
+        calc
+        grim # Wayland screenshot utility
+        slurp # Region selection tool
+        satty # Annotation GUI (Catppuccin compatible)
+        wl-clipboard
+        gpu-screen-recorder # CLI / Backend
+        gpu-screen-recorder-gtk # GTK Tray / GUI (Spectacle-like recorder window)
       ];
 
       programs.noctalia = {
@@ -89,10 +107,45 @@ in
         config = {
           placeholder = "Search or type command...";
           show_sub_when_single = true;
+
+          # Vim keybindings for list navigation
+          keybinds = {
+            # Navigation
+            next = [
+              "Down"
+              "ctrl n"
+              "ctrl j"
+            ];
+            previous = [
+              "Up"
+              "ctrl p"
+              "ctrl k"
+            ];
+
+            # Accept
+            accept_type = [ "Return" ];
+
+            # Close (Use Capitalized "Escape" or "ctrl c")
+            close = [
+              "Escape"
+              "ctrl c"
+            ];
+          };
         };
       };
 
-      home.packages = [ toggleDisplay ];
+      services.swayidle = {
+        enable = true;
+        timeouts = [
+          {
+            # Turn off monitors after 10 minutes (600 seconds) of inactivity
+            timeout = 600;
+            command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+            # Turn monitors back on immediately when mouse/keyboard input is detected
+            resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+          }
+        ];
+      };
       # -- HM
     }
   ];
