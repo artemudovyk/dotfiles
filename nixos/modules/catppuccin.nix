@@ -1,15 +1,22 @@
 { inputs, ... }:
 
 {
-  imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
-  ];
-
   home-manager.sharedModules = [
     {
-      catppuccin.yazi = {
+      imports = [
+        inputs.catppuccin.homeModules.catppuccin
+      ];
+
+      catppuccin = {
         enable = true;
+        autoEnable = false;
+
         flavor = "macchiato";
+        accent = "blue";
+
+        yazi = {
+          enable = true;
+        };
       };
       # -- HM
     }

@@ -13,44 +13,6 @@
             sort_by = "alphabetical";
           };
         };
-
-        theme = {
-          # Catppuccin Macchiato Palette Overrides
-          manager = {
-            cwd = {
-              fg = "#8aadf4";
-            }; # Blue
-            hovered = {
-              fg = "#cad3f5";
-              bg = "#363a4f";
-              bold = true;
-            }; # Surface1
-            preview_hovered = {
-              bg = "#363a4f";
-            };
-          };
-          status = {
-            separator_style = {
-              fg = "#24273a";
-              bg = "#24273a";
-            };
-            mode_normal = {
-              fg = "#181926";
-              bg = "#8aadf4";
-              bold = true;
-            }; # Base / Blue
-            mode_select = {
-              fg = "#181926";
-              bg = "#a6da95";
-              bold = true;
-            }; # Base / Green
-            mode_unset = {
-              fg = "#181926";
-              bg = "#f5a97f";
-              bold = true;
-            }; # Base / Peach
-          };
-        };
       };
 
       home.packages = with pkgs; [
