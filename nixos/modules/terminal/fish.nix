@@ -9,6 +9,15 @@
         interactiveShellInit = ''
           # Disable interactive greeting
           set fish_greeting
+
+          # Enable Vim motions for terminal prompts
+          fish_vi_key_bindings
+
+          # Enable hjkl in Fish completion pager
+          bind -M insert h 'if commandline --paging-mode; commandline -f backward-char; else; commandline -i h; end'
+          bind -M insert j 'if commandline --paging-mode; commandline -f down-line; else; commandline -i j; end'
+          bind -M insert k 'if commandline --paging-mode; commandline -f up-line; else; commandline -i k; end'
+          bind -M insert l 'if commandline --paging-mode; commandline -f forward-char; else; commandline -i l; end'
         '';
 
         shellAliases = {
