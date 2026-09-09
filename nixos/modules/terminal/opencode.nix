@@ -53,6 +53,11 @@
                 apiKey = "{file:${config.sops.secrets."opencode/opencode-api-key".path}}";
               };
             };
+            opencode-go = {
+              options = {
+                apiKey = "{file:${config.sops.secrets."opencode/opencode-api-key".path}}";
+              };
+            };
             openrouter = {
               options = {
                 apiKey = "{file:${config.sops.secrets."opencode/openrouter-api-key".path}}";
