@@ -14,8 +14,8 @@
           shell = "${pkgs.fish}/bin/fish";
 
           # Cursor trail animation settings
-          # cursor_trail = 3;
-          # cursor_trail_decay = "0.05 0.1";
+          cursor_trail = 3;
+          cursor_trail_decay = "0.05 0.1";
 
           # Neovim scrollback pager configuration
           scrollback_pager = "nvim -c 'setlocal nonumber nolist showtabline=0 foldcolumn=0|Man!' -c \"autocmd VimEnter * normal G\" -";
