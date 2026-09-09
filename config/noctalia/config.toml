@@ -76,8 +76,19 @@ show_unlock_hint = true
 show_weather = true
 
 [notification]
+filter_order = [ "filter" ]
 background_opacity = 1.0
 scale = 0.75
+
+[notification.filter.filter]
+allow_permanent = false
+allowed_urgencies = [ "low", "normal" ]
+bypass_dnd = false
+enabled = true
+match = "satty"
+play_sound = false
+save_history = false
+show_toast = false
 
 [osd]
 background_opacity = 1.0
