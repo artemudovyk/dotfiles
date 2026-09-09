@@ -84,6 +84,7 @@
             ./modules/obs.nix
             ./modules/pipewire.nix
             ./modules/catppuccin.nix
+            ./modules/obsidian.nix
 
             home-manager.nixosModules.home-manager
             {
