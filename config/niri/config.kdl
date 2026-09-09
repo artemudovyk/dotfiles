@@ -221,7 +221,7 @@ binds {
     Mod+J     hotkey-overlay-title="Focus column down" { focus-window-down; }
     Mod+K     hotkey-overlay-title="Focus column up" { focus-window-up; }
     Mod+L     hotkey-overlay-title="Focus column down" { focus-column-right; }
-    Mod+WheelScrollUp hotkey-overlay-title="Focus column down" { focus-window-left; }
+    Mod+WheelScrollUp hotkey-overlay-title="Focus column down" { focus-column-left; }
     Mod+WheelScrollDown hotkey-overlay-title="Focus column down" { focus-column-right; }
 
     Mod+Ctrl+H     hotkey-overlay-title="Move column left" { move-column-left; }
