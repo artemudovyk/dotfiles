@@ -7,12 +7,12 @@ enabled = true
 [bar.default]
 background_opacity = 0.34999999217689037
 center = [ "active_window" ]
-end = [ "tray", "network", "bluetooth", "volume", "battery", "keyboard_layout", "clock", "session" ]
+end = [ "tray", "notifications", "network", "bluetooth", "volume", "battery", "keyboard_layout", "clock", "session" ]
 margin_ends = 0
 scale = 1.0
 thickness = 20
 font_scale = 0.90
-start = [ "workspaces", "cpu", "ram" ]
+start = [ "workspaces", "cpu", "sysmon", "ram" ]
 
 [control_center]
 hidden_tabs = ["weather"]
@@ -150,3 +150,10 @@ media = false
 nightlight = false
 power_profile = false
 wifi = false
+
+[widget.sysmon]
+stat = "gpu_usage"
+
+[widget.tray]
+drawer = true
+
