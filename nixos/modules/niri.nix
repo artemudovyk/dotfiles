@@ -76,6 +76,7 @@ in
 
       home.packages = with pkgs; [
         toggleDisplay
+
         playerctl
         brightnessctl
         calc
@@ -87,6 +88,8 @@ in
         gpu-screen-recorder-gtk # GTK Tray / GUI (Spectacle-like recorder window)
         xwayland-satellite
         xwayland
+        # To switch codecs on output devices
+        pwvucontrol
       ];
 
       programs.noctalia = {
@@ -139,6 +142,12 @@ in
           }
         ];
       };
+
+      xdg.configFile."satty/config.toml".text = ''
+        [general]
+        fullscreen = true
+        early-exit = false
+      '';
       # -- HM
     }
   ];

@@ -23,6 +23,9 @@ return {
         --   end,
         -- },
       },
+      win_options = {
+        winfixbuf = false,
+      },
     })
     vim.keymap.set("n", "<C-->", "<CMD>Oil<CR>", { desc = "Open parent directory" })
   end,

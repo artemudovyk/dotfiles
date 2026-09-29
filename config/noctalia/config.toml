@@ -7,12 +7,12 @@ enabled = true
 [bar.default]
 background_opacity = 0.34999999217689037
 center = [ "active_window" ]
-end = [ "tray", "notifications", "network", "bluetooth", "volume", "battery", "keyboard_layout", "clock", "session" ]
+end = [ "tray", "network", "bluetooth", "volume", "battery", "keyboard_layout", "clock", "session" ]
 margin_ends = 0
 scale = 1.0
 thickness = 20
 font_scale = 0.90
-start = [ "workspaces", "cpu", "sysmon", "ram" ]
+start = [ "taskbar", "workspaces" ]
 
 [control_center]
 hidden_tabs = ["weather"]
@@ -94,7 +94,7 @@ show_toast = false
 background_opacity = 1.0
 
 [plugins]
-enabled = []
+enabled = [ ]
 
 [shell]
 font_family = "Comic Shanns Mono Nerd Font"
@@ -146,6 +146,7 @@ show_label = false
 type = "tadomika_ari/w-engine:w-engine-widget"
 
 [widget.workspaces]
+enabled = false
 hide_when_empty = true
 labels_only_when_occupied = true
 style = "minimal"
@@ -166,5 +167,8 @@ wifi = false
 stat = "gpu_usage"
 
 [widget.tray]
-drawer = true
+drawer = false
 
+[widget.taskbar]
+group_by_workspace = true
+hide_empty_workspaces = true

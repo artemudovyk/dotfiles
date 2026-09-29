@@ -6,6 +6,8 @@
       home.packages = with pkgs; [
         rust-analyzer
         lua-language-server
+        typescript-language-server
+        tailwindcss-language-server
         stylua
         ruff
         prettierd

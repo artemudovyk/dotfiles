@@ -28,6 +28,7 @@ in
         };
       };
 
+      # TODO: remove later
       programs.plasma = {
         configFile = {
           "kdeglobals"."General"."browserApplication" = desktopFile;

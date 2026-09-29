@@ -30,21 +30,25 @@ vim.lsp.enable("nil_ls")
 
 -- Terraform
 vim.lsp.config("terraformls", {
+  cmd = { "terraform-ls", "serve", "-log-file", "/tmp/terraform-ls.log" },
   filetypes = { "terraform", "terraform-vars", "tf" },
   root_markers = { ".terraform/", ".terraform.lock.hcl" },
   init_options = {
-    ["terraformls"] = {
-      experimentalFeatures = {
-        validateOnSave = true,
-        prefillRequiredFields = true,
-      },
+    experimentalFeatures = {
+      validateOnSave = true,
+      prefillRequiredFields = true,
     },
+    ignoreSingleFileWarning = true,
   },
-  -- on_attach = function(client, bufnr)
-  --   if client.server_capabilities then
-  --     client.server_capabilities.semanticTokensProvider = nil
-  --   end
-  -- end,
+  on_attach = function(client, bufnr)
+    if client.server_capabilities then
+      -- Disable semantic tokens (your existing commented line)
+      client.server_capabilities.semanticTokensProvider = nil
+
+      -- Disable CodeLens virtual lines for variable references
+      client.server_capabilities.codeLensProvider = false
+    end
+  end,
 })
 vim.lsp.enable("terraformls")
 

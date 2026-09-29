@@ -1,5 +1,8 @@
 spawn-at-startup "noctalia"
+// For games to work
 spawn-at-startup "xwayland-satellite" "--scale" "1"
+// Enable DND by defualt in Noctalia
+spawn-at-startup "noctalia" "msg" "notification-dnd-set" "on"
 
 workspace "1"
 workspace "2"
@@ -95,6 +98,17 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+  match app-id="zen-beta"
+  open-maximized true
+}
+
+
+window-rule {
+  match app-id="thunderbird"
+  open-maximized true
+}
+
 window-rule { 
   match app-id="steam" title=r#"\^notificationtoasts\_\\d+\_desktop$"# 
   default-floating-position x=0 y=0 relative-to="bottom-right"
@@ -146,7 +160,7 @@ binds {
     // Mod+Ctrl+S       hotkey-overlay-title="Screenshot (monitor: focused)" { spawn "dfr-screenshot" "monitor-focused"; }
     // Mod+Ctrl+Shift+S hotkey-overlay-title="Screenshot (monitor: all)" { spawn "dfr-screenshot" "monitor-all"; }
     Print hotkey-overlay-title="Screenshot (Area to Editor)" { 
-      spawn "sh" "-c" "grim -g \"$(slurp)\" - | satty --filename -"; 
+      spawn "sh" "-c" "grim -g \"$(slurp -d)\" - | satty --filename -"; 
     }
     Shift+Print hotkey-overlay-title="Screenshot (Fullscreen to Clipboard)" { 
       spawn "sh" "-c" "grim - | wl-copy"; 
@@ -156,6 +170,8 @@ binds {
     }
 
     Mod+Shift+P       hotkey-overlay-title="Toggle display" { spawn "toggle-display"; }
+
+    Mod+P hotkey-overlay-title="Pick window" { spawn "niri" "msg" "pick-window"; }
 
     // Notifications.
     // Mod+N            hotkey-overlay-title="Show last notification" { spawn "makoctl" "restore"; }

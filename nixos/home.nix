@@ -9,12 +9,16 @@
   home.packages = with pkgs; [
     bruno
     lunatask
-    actual-server
+    actual-client
     qbittorrent
     plex
     slack
     telegram-desktop
     thunderbird
+    bambu-studio
+    ffmpeg
+    vlc
+    google-chrome
   ];
 
   # Let Home Manager install and manage itself

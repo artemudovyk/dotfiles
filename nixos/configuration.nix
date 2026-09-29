@@ -51,7 +51,35 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      # Standard Brother driver collection (includes L-series PPDs)
+      brlaser
+      cups-brother-hll2350dw # Generic driver compatible with HL/DCP monobw laser series
+    ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true; # Opens port 5353 for local network discovery
+  };
+
+  # Open standard CUPS / IPP ports on the local firewall
+  networking.firewall.allowedUDPPorts = [
+    631
+    5353
+  ];
+  networking.firewall.allowedTCPPorts = [ 631 ];
+
+  # Enable SANE for scanning over network if using the scanner functionality
+  hardware.sane = {
+    enable = true;
+    extraBackends = with pkgs; [
+      sane-airscan # Driverless scanning via eSCL / WSD
+    ];
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -85,6 +113,9 @@
       "plex"
       "docker"
       "corectrl"
+      "lpadmin" # Grants CUPS administration rights
+      "scanner" # Required for document scanning
+      "lp" # Required for printing access
     ];
     shell = pkgs.fish;
   };
@@ -107,6 +138,15 @@
     git
     keyd
   ];
+
+  nix.settings = {
+    cores = 12;
+    max-jobs = 2;
+  };
+
+  boot.extraModprobeConfig = ''
+    options btusb disable_autosuspend=Y
+  '';
 
   # Plex
   services.plex = {
