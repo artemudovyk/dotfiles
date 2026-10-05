@@ -219,6 +219,12 @@
     };
   };
 
+  # Enable the xpadneo driver module for Xbox Bluetooth controllers
+  hardware.xpadneo.enable = true;
+
+  # Ensure force-feedback support is enabled in kernel
+  boot.kernelModules = [ "ff-memless" ];
+
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
