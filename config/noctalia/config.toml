@@ -1,6 +1,9 @@
 [accessibility]
 ui_scale = 1.0
 
+[audio]
+enable_sounds = false
+
 [backdrop]
 enabled = true
 
