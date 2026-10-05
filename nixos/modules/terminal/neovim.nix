@@ -13,6 +13,7 @@
         prettierd
         terraform-ls
         tree-sitter
+        vscode-json-languageserver
         # Nix
         nil # Nix LSP
         nixfmt
