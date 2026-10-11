@@ -140,8 +140,8 @@
   ];
 
   nix.settings = {
-    cores = 12;
-    max-jobs = 2;
+    cores = 20;
+    max-jobs = 4;
   };
 
   boot.extraModprobeConfig = ''
@@ -262,4 +262,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
+
 }
