@@ -19,6 +19,8 @@
     ffmpeg
     vlc
     google-chrome
+    gimp
+    inkscape
   ];
 
   # Let Home Manager install and manage itself
