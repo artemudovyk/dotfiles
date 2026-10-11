@@ -26,6 +26,29 @@
   programs.corectrl.enable = true;
   hardware.amdgpu.overdrive.enable = true;
 
+  # Controller (Dualsense) udev rules
+  services.udev.packages = [
+    pkgs.game-devices-udev-rules
+  ];
+  # hardware.uinput.enable = true;
+  boot.kernelModules = [
+    "hid-sony"
+    "hid-playstation"
+    "snd-seq" # Needed for USB audio stream routing
+  ];
+  users.users.artud.extraGroups = [
+    "input"
+    "uinput"
+  ];
+  # PipeWire/Audio setup needed for Haptics audio channel routing
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   home-manager.sharedModules = [
     {
       systemd.user.services.corectrl = {
@@ -42,8 +65,13 @@
         };
       };
 
+      home.packages = with pkgs; [
+        pavucontrol
+      ];
+
       home.sessionVariables = {
         STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
       };
 
       programs.mangohud = {
