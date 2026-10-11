@@ -40,12 +40,12 @@
             end
           '';
           fenv = ''
-            if test -n "$argv[1]"
-              # Switch to the requested shell
-              set -g DIRENV_SHELL $argv[1]
+            if test -n "$argv"
+              # -gx explicitly EXPORTS the variable so direnv's subshell can read it
+              set -gx DIRENV_SHELL $argv[1]
               echo "🔄 Swapping direnv flake to: $argv[1]"
             else
-              # If no argument is provided, reset to default
+              # Explicitly erase the exported variable to drop back to default
               set -e DIRENV_SHELL
               echo "🔄 Resetting direnv flake to: default"
             end
