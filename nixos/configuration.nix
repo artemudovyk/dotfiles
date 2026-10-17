@@ -236,6 +236,17 @@
     ];
   };
 
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 524288;
+    "fs.inotify.max_user_instances" = 1024;
+    "fs.inotify.max_queued_events" = 32768;
+  };
+
+  hardware.keyboard.qmk = {
+    enable = true;
+    keychronSupport = true;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

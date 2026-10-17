@@ -115,6 +115,17 @@ window-rule {
   open-focused false 
 }
 
+
+window-rule {
+  match app-id="steam" title="Steam Big Picture Mode"
+  open-maximized true
+}
+
+window-rule {
+  match app-id="steam" title="Steam"
+  open-maximized true
+}
+
 // window-rule {
 //     match app-id=r#"^steam$"# title=r#"^$"#
 //     match app-id=r#"^steam$"# title=r#"^Steam$"#
@@ -171,7 +182,10 @@ binds {
 
     Mod+Shift+P       hotkey-overlay-title="Toggle display" { spawn "toggle-display"; }
 
-    Mod+P hotkey-overlay-title="Pick window" { spawn "niri" "msg" "pick-window"; }
+    // Mod+P hotkey-overlay-title="Pick window" { spawn "niri" "msg" "pick-window"; }
+    Mod+P hotkey-overlay-title="Pick window" {
+      spawn "sh" "-c" "notify-send 'Window info' \"$(niri msg pick-window)\"";
+    }
 
     // Notifications.
     // Mod+N            hotkey-overlay-title="Show last notification" { spawn "makoctl" "restore"; }

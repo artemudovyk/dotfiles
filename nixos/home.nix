@@ -21,6 +21,7 @@
     google-chrome
     gimp
     inkscape
+    libnotify
   ];
 
   # Let Home Manager install and manage itself

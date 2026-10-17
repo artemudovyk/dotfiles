@@ -16,6 +16,11 @@
       proton-ge-bin
       mangohud
     ];
+    package = pkgs.steam.override {
+      extraEnv = {
+        SDL_JOYSTICK_HIDAPI_XBOX = "0";
+      };
+    };
   };
 
   programs.xwayland.enable = true;

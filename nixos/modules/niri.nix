@@ -67,6 +67,15 @@ in
     theme = "breeze"; # Optional: use breeze or custom theme
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
+
   home-manager.sharedModules = [
     {
       imports = [
